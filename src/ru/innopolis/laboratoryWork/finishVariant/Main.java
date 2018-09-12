@@ -16,7 +16,7 @@ public class Main {
         }
 
         try {
-            finder.getOccurencies( new String[]{"file:///C:\\\\Test\\\\Vojna.txt"}, new String[]{"война"}, "C:\\Test\\Res.txt");
+            finder.getOccurencies( s, new String[]{"война"}, "C:\\Test\\Res.txt");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

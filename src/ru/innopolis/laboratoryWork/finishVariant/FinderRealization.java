@@ -36,7 +36,7 @@ public class FinderRealization implements Finder {
         textSearch = textSearch.substring(0,textSearch.length()-1);
         Pattern pattern = Pattern.compile(textSearch, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 
-        ExecutorService executorProcessingFiles = Executors.newCachedThreadPool();
+        ExecutorService executorProcessingFiles = Executors.newFixedThreadPool(COUNT_THREAD);
         for (String pathFile:sources) {
             executorProcessingFiles.submit(new ProcessingFiles(pathFile,finishList,pattern));
         }
