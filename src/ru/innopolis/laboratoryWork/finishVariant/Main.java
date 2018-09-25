@@ -1,10 +1,9 @@
 package ru.innopolis.laboratoryWork.finishVariant;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         Finder finder = new FinderRealization();
         long start = System.currentTimeMillis();
 
@@ -12,7 +11,7 @@ public class Main {
 
         for (int i = 1; i <= 100; i++) {
             s[i*2] = "file:///C:\\Test\\TestFile.txt";
-            s[i*2-1] =  "file:///C:\\\\Test\\\\Vojna.txt";
+            s[i * 2 - 1] = "file:///C:\\\\Test\\\\Vojna234324.txt";
         }
 
         try {

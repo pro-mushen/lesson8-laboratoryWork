@@ -1,6 +1,8 @@
 package ru.innopolis.laboratoryWork.finishVariant;
 
 
+import org.apache.log4j.Logger;
+
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
@@ -13,6 +15,7 @@ public class ProcessingFiles implements Runnable {
     private String pathSourcesFile;
     private ConcurrentLinkedQueue<String> finishList;
     private Pattern pattern;
+    private static final Logger LOGGER = Logger.getLogger(ProcessingFiles.class);
 
     public ProcessingFiles(String pathSourcesFile, ConcurrentLinkedQueue finishList, Pattern pattern) {
         this.pathSourcesFile = pathSourcesFile;
@@ -22,7 +25,6 @@ public class ProcessingFiles implements Runnable {
 
     public ProcessingFiles(String pathSourcesFile) {
     }
-
 
     private void addFoundOffers() {
         String offer;
@@ -36,7 +38,7 @@ public class ProcessingFiles implements Runnable {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Возникла проблема, при считывании исходных данных: " + pathSourcesFile);
+            LOGGER.debug("could not read file " + pathSourcesFile);
         }
     }
 

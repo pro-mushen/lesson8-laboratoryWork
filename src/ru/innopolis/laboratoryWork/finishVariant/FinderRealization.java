@@ -1,5 +1,7 @@
 package ru.innopolis.laboratoryWork.finishVariant;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +16,7 @@ public class FinderRealization implements Finder {
 
     private ConcurrentLinkedQueue<String> finishList = new ConcurrentLinkedQueue<>();
     static final int COUNT_THREAD = 10;
+    private static final Logger LOGGER = Logger.getLogger(ProcessingFiles.class);
 
 
     @Override
@@ -22,7 +25,6 @@ public class FinderRealization implements Finder {
         ExecutorService executorProcessingFiles = getAndSubmitExecutorProcessingFiles(sources,words);
         waitExecutor(executorProcessingFiles);
         write(finishList,res);
-
     }
 
 
@@ -62,6 +64,7 @@ public class FinderRealization implements Finder {
                     writer.write(offer);
                 }
             } catch (IOException e) {
+                LOGGER.error("Could not write result");
                 IOException myException = new IOException("Возникла проблема, при записи результата. Проверьте корректность указанного пути.");
                 myException.setStackTrace(e.getStackTrace());
                 throw myException;
